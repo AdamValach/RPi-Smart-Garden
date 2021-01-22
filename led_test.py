@@ -1,14 +1,11 @@
-import gpiozero
-from gpiozero import LED
-from time import sleep
+import time
+from gpiozero import InputDevice
 
-ziarovka = LED(18)
+moisture = InputDevice(14)
 
 while True:
-    print("Starting")
-    ziarovka.on()
-    print("Bulb on")
-    sleep(1)
-    ziarovka.off()
-    print("Bulb off")
-    sleep(1)
+    if not moisture.is_active:
+        print("Moisture detected!")
+    else:
+        print("Moisture not detected!")
+    time.sleep(1)
